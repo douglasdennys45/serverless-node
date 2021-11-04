@@ -4,6 +4,7 @@ module.exports = {
     '!<rootDir>/src/**/index.ts'
   ],
   coverageDirectory: 'coverage',
+  testEnvironment: 'node',
   coverageProvider: 'babel',
   moduleNameMapper: {
     '@core/(.+)': '<rootDir>/src/core/$1',
@@ -16,13 +17,12 @@ module.exports = {
     '**/*.spec.ts',
     '**/*.test.ts'
   ],
-  preset: '@shelf/jest-dynamodb',
+  // preset: '@shelf/jest-dynamodb',
   roots: [
     '<rootDir>/src'
   ],
   transform: {
     '\\.ts$': 'ts-jest'
   },
-  clearMocks: true,
-  setupFiles: ['dotenv/config']
+  clearMocks: true
 }
