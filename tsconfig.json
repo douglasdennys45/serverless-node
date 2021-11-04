@@ -12,11 +12,11 @@
     "esModuleInterop": true,
     "baseUrl": "src",
     "paths": {
-      "@adapters/*": ["./adapters/*"],
-      "@main/*": ["./main/*"],
-      "@drivers/*": ["./drivers/*"],
-      "@entities/*": ["./entities/*"],
-      "@usecases/*": ["./usecases/*"]
+      "@interfaces/*": ["./interfaces/*"],
+      "@core/*": ["./core/*"],
+      "@frameworks/*": ["./frameworks/*"],
+      "@entities/*": ["./domain/entities/*"],
+      "@usecases/*": ["./domain/usecases/*"]
     },
     "strict": true,
     "noImplicitOverride": true,

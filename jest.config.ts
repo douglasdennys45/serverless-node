@@ -6,11 +6,11 @@ module.exports = {
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
   moduleNameMapper: {
-    '@main/(.+)': '<rootDir>/src/main/$1',
-    '@adapters/(.+)': '<rootDir>/src/adapters/$1',
-    '@entities/(.+)': '<rootDir>/src/entities/$1',
-    '@usecases/(.+)': '<rootDir>/src/usecases/$1',
-    '@drivers/(.+)': '<rootDir>/src/drivers/$1'
+    '@core/(.+)': '<rootDir>/src/core/$1',
+    '@interfaces/(.+)': '<rootDir>/src/interfaces/$1',
+    '@entities/(.+)': '<rootDir>/src/domain/entities/$1',
+    '@usecases/(.+)': '<rootDir>/src/domain/usecases/$1',
+    '@frameworks/(.+)': '<rootDir>/src/frameworks/$1'
   },
   testMatch: [
     '**/*.spec.ts',
