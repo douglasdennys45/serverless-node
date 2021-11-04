@@ -1,5 +1,13 @@
-import { HttpResponse, HttpRequest } from '@interfaces/helpers'
+import { HttpResponse, serverError } from '@interfaces/helpers'
 
-export interface Controller {
-  handle: (request: HttpRequest) => Promise<HttpResponse>
+export abstract class Controller {
+  abstract perform (httpRequest: any): Promise<HttpResponse>
+
+  async handle (httpRequest: any): Promise<HttpResponse> {
+    try {
+      return await this.perform(httpRequest)
+    } catch (error) {
+      return serverError(error)
+    }
+  }
 }
