@@ -1,3 +1,9 @@
+export type HttpRequest = {
+  body?: any
+  query?: any
+  params?: any
+}
+
 export type HttpResponse<T = any> = {
   statusCode: number
   data: T
@@ -13,7 +19,7 @@ export const unprocessableEntity = (data: string[]): HttpResponse => ({
   data
 })
 
-export const serverError = (error: any): HttpResponse<Error> => ({
+export const serverError = (error: any): HttpResponse => ({
   statusCode: 500,
   data: error
 })

@@ -3,10 +3,10 @@ import { AddUserController } from '@interfaces/controllers'
 describe('AddUserController', () => {
   let sut: AddUserController
   let services: jest.Mock
-  let data: { name: string, email: string, phone: string }
+  let data: { body: { name: string, email: string, phone: string } }
 
   beforeAll(() => {
-    data = { name: 'Dev IOUU', email: 'dev@iouu.com.br', phone: '84999990000' }
+    data = { body: { name: 'Dev IOUU', email: 'dev@iouu.com.br', phone: '84999990000' } }
     services = jest.fn()
     services.mockResolvedValue({ errors: [], value: 'any_response' })
   })
@@ -17,7 +17,7 @@ describe('AddUserController', () => {
 
   it('should call Create User Service with correct input', async () => {
     await sut.handle(data)
-    expect(services).toHaveBeenCalledWith(data)
+    expect(services).toHaveBeenCalledWith(data.body)
     expect(services).toHaveBeenCalledTimes(1)
   })
 
