@@ -11,7 +11,8 @@ module.exports = {
     '@interfaces/(.+)': '<rootDir>/src/interfaces/$1',
     '@entities/(.+)': '<rootDir>/src/domain/entities/$1',
     '@usecases/(.+)': '<rootDir>/src/domain/usecases/$1',
-    '@frameworks/(.+)': '<rootDir>/src/frameworks/$1'
+    '@frameworks/(.+)': '<rootDir>/src/frameworks/$1',
+    '@domain/(.+)': '<rootDir>/domain/contracts/$1'
   },
   testMatch: [
     '**/*.spec.ts',

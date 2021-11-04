@@ -13,6 +13,7 @@
     "baseUrl": "src",
     "paths": {
       "@interfaces/*": ["./interfaces/*"],
+      "@domain/*": ["./domain/contracts/*"],
       "@core/*": ["./core/*"],
       "@frameworks/*": ["./frameworks/*"],
       "@entities/*": ["./domain/entities/*"],

@@ -16,6 +16,8 @@
     ],
     "rules": {
         "no-useless-constructor": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "no-redeclare": "off",
+        "no-use-before-define": "off"
     }
 }
