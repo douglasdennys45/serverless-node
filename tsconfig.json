@@ -17,7 +17,7 @@
       "@core/*": ["./core/*"],
       "@frameworks/*": ["./frameworks/*"],
       "@entities/*": ["./domain/entities/*"],
-      "@usecases/*": ["./domain/usecases/*"]
+      "@services/*": ["./domain/services/*"]
     },
     "strict": true,
     "noImplicitOverride": true,

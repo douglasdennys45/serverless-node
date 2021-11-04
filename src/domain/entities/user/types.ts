@@ -9,5 +9,5 @@ export type UserParam = {
 
 export type UserReturn = {
   errors: string[]
-  value: UserParam | undefined
+  value: any
 }

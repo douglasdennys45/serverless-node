@@ -1,8 +1,8 @@
-export interface UserRepository {
-  insert: (request: UserRepository.Request) => Promise<UserRepository.Response>
+export interface AddUserRepository {
+  insert: (request: AddUserRepository.Request) => Promise<AddUserRepository.Response>
 }
 
-export namespace UserRepository {
+export namespace AddUserRepository {
   export type Request = { name: string, email: string, phone: string }
   export type Response = string
 }
