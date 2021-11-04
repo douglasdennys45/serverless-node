@@ -11,15 +11,7 @@
     "test:staged": "npm test -- --findRelatedTests",
     "test:coverage": "npm test -- --coverage"
   },
-  "keywords": [
-    "Node.JS",
-    "TypeScript",
-    "Serverless",
-    "DynamoDB",
-    "SQS",
-    "SNS",
-    "S3"
-  ],
+  "keywords": ["Node.JS", "TypeScript", "Serverless", "DynamoDB", "SQS", "SNS", "S3"],
   "author": "Douglas Dennys <douglasdennys45@gmail.com>",
   "license": "MIT",
   "devDependencies": {
