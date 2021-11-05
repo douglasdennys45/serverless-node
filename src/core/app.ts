@@ -1,5 +1,6 @@
-import './module-alias'
+import './config/module-alias'
+import { makeDynamoDBConnect } from '@core/factories/frameworks/database'
 
-import { createUser } from './routes'
+makeDynamoDBConnect()
 
-export const create = createUser
+export * from './config/app'

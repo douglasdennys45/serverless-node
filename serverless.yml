@@ -3,17 +3,24 @@ service: skeleton-node-serverless
 frameworkVersion: '2'
 
 custom:
+  esbuild:
+    # sourcemap: true
+    # exclude: 
+    # - 'aws-sdk'
+    # target: 'node14'
+    # define: 
+    #   'require.resolve': undefined
+    # platform: 'node'
+    # concurrency: 10
+    bundle: true
+    minify: false
   tableName: 'users-${sls:stage}'
   serverlessPluginTypescript:
     tsConfigFileLocation: './tsconfig.build.json'
-  # dynamodb:
-  #   stages:
-  #     - test
-  #   start:
-  #     port: 8000
-  #     inMemory: true
-  #     migrate: true    
 
+package:
+  individually: true
+  
 provider:
   name: aws
   runtime: nodejs14.x
@@ -46,7 +53,7 @@ provider:
             - { "Fn::GetAtt": ["UsersTable", "Arn"] }
 
 plugins:
-  - serverless-plugin-typescript
+  - serverless-esbuild
   - serverless-offline
 
 resources:
@@ -65,6 +72,6 @@ resources:
 
 functions:
   createUser:
-    handler: src/core/app.create
+    handler: src/core/app.createUser
     events:
       - http: "POST /users"
