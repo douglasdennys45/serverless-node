@@ -4,14 +4,6 @@ frameworkVersion: '2'
 
 custom:
   esbuild:
-    # sourcemap: true
-    # exclude: 
-    # - 'aws-sdk'
-    # target: 'node14'
-    # define: 
-    #   'require.resolve': undefined
-    # platform: 'node'
-    # concurrency: 10
     bundle: true
     minify: false
   tableName: 'users-${sls:stage}'
@@ -40,9 +32,9 @@ provider:
   #     - subnetId1
   environment:
     SLS_DEBUG: "*"
-    # AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
-    # NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000'
-  stage: dev
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+    NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000'
+  # stage: dev
   iam:
     role:
       statements:
