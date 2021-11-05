@@ -1,0 +1,1 @@
+{"version":3,"file":"dynamodb-connect.js","sourceRoot":"","sources":["../../../../../src/frameworks/database/dynamodb/dynamodb-connect.ts"],"names":[],"mappings":";;;;;;AAAA,sDAAyB;AAEZ,QAAA,eAAe,GAAG;IAC7B,MAAM,EAAE,IAAW;IAEnB,OAAO;QACL,IAAI,CAAC,MAAM,GAAG,IAAI,iBAAG,CAAC,QAAQ,CAAC,cAAc,EAAE,CAAA;IACjD,CAAC;IAED,GAAG;QACD,OAAO,IAAI,CAAC,MAAM,CAAA;IACpB,CAAC;CACF,CAAA"}

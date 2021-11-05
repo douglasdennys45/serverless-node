@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "incremental": true,
-    "outDir": "lib",
-    "rootDirs": ["src"],
-    "target": "ES2021",
-    "sourceMap": true,
-    "skipLibCheck": true, 
-    "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
+    "lib": ["ESNext"],
     "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "module": "commonjs",
     "esModuleInterop": true,
+    "noEmit": false,
+    "target": "ES2020",
+    "rootDirs": ["src", "tests"],
     "baseUrl": "src",
     "paths": {
       "@interfaces/*": ["./interfaces/*"],
@@ -19,11 +21,50 @@
       "@entities/*": ["./domain/entities/*"],
       "@services/*": ["./domain/services/*"]
     },
-    "strict": true,
-    "noImplicitOverride": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "node_modules/**/*",
+    ".serverless/**/*"
+  ],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }
+
+// {
+//   "compilerOptions": {
+//     "incremental": true,
+//     "outDir": "lib",
+//     "lib": ["ESNext"],
+//     "noUnusedLocals": true,
+//     "noUnusedParameters": true,
+//     "noEmit": false,
+//     "rootDirs": ["src"],
+//     "target": "ES2021",
+//     "sourceMap": true,
+//     "skipLibCheck": true, 
+//     "forceConsistentCasingInFileNames": true,
+//     "module": "commonjs",
+//     "moduleResolution": "node",
+//     "esModuleInterop": true,
+//     "baseUrl": "src",
+//     "paths": {
+//       "@interfaces/*": ["./interfaces/*"],
+//       "@domain/*": ["./domain/contracts/*"],
+//       "@core/*": ["./core/*"],
+//       "@frameworks/*": ["./frameworks/*"],
+//       "@entities/*": ["./domain/entities/*"],
+//       "@services/*": ["./domain/services/*"]
+//     },
+//     "strict": true,
+//     "noImplicitOverride": true,
+//     "removeComments": true,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true
+//   },
+//   "ts-node": {
+//     "require": ["tsconfig-paths/register"]
+//   },
+//   "include": ["src"]
+// }

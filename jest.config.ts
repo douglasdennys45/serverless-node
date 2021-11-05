@@ -18,7 +18,7 @@ module.exports = {
     '**/*.spec.ts',
     '**/*.test.ts'
   ],
-  // preset: '@shelf/jest-dynamodb',
+  preset: '@shelf/jest-dynamodb',
   roots: [
     '<rootDir>/src'
   ],

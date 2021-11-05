@@ -2,93 +2,69 @@ service: skeleton-node-serverless
 
 frameworkVersion: '2'
 
+custom:
+  tableName: 'users-${sls:stage}'
+  serverlessPluginTypescript:
+    tsConfigFileLocation: './tsconfig.build.json'
+  # dynamodb:
+  #   stages:
+  #     - test
+  #   start:
+  #     port: 8000
+  #     inMemory: true
+  #     migrate: true    
+
 provider:
   name: aws
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
   region: us-east-1
   memorySize: 256
-  apiName: skeleton-node-serverless # name api gateway
+  apiName: skeleton-node-serverless
   timeout: 5
   logRetentionInDays: 5
   tracing:
     apiGateway: true
     lambda: true
-  vpc:
-    securityGroupIds:
-      - securityGroupId1
-    subnetIds:
-      - subnetId1
+  # vpc:
+  #   securityGroupIds:
+  #     - securityGroupId1
+  #   subnetIds:
+  #     - subnetId1
   environment:
-    AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
-    NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000'
+    SLS_DEBUG: "*"
+    # AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+    # NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000'
   stage: dev
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - "*"
+          Resource:
+            - { "Fn::GetAtt": ["UsersTable", "Arn"] }
 
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
 
-# you can define service wide environment variables here
+resources:
+  Resources:
+    ProviderDynamoDBTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.tableName}
 
 functions:
-  hello:
-    handler: handler.hello
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
-#    events:
-#      - httpApi:
-#          path: /users/create
-#          method: get
-#      - websocket: $connect
-#      - s3: ${env:BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
-#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
-#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
-#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
-#      - iot:
-#          sql: "SELECT * FROM 'some_topic'"
-#      - cloudwatchEvent:
-#          event:
-#            source:
-#              - "aws.ec2"
-#            detail-type:
-#              - "EC2 Instance State-change Notification"
-#            detail:
-#              state:
-#                - pending
-#      - cloudwatchLog: '/aws/lambda/hello'
-#      - cognitoUserPool:
-#          pool: MyUserPool
-#          trigger: PreSignUp
-#      - alb:
-#          listenerArn: arn:aws:elasticloadbalancing:us-east-1:XXXXXX:listener/app/my-load-balancer/50dc6c495c0c9188/
-#          priority: 1
-#          conditions:
-#            host: example.com
-#            path: /hello
-
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+  createUser:
+    handler: src/core/app.create
+    events:
+      - http: "POST /users"
