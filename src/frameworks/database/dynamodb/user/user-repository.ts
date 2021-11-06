@@ -18,6 +18,7 @@ export class UserRepository implements AddUserRepository {
       }
     }
     await conn.put(params).promise()
+    console.log(params.Item.id)
     return params.Item.id
   }
 }

@@ -3,5 +3,6 @@ coverage
 lib
 .build
 .esbuild
+.serverless
 
 package-lock.json

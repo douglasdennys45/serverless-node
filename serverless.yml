@@ -41,8 +41,7 @@ provider:
         - Effect: Allow
           Action:
             - "*"
-          Resource:
-            - { "Fn::GetAtt": ["UsersTable", "Arn"] }
+          Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.tableName}"
 
 plugins:
   - serverless-esbuild
